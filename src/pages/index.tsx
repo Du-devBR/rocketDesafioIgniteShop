@@ -44,7 +44,7 @@ export default function Home({ products }: HomeProps) {
                   <strong>{product.name}</strong>
                   <span>{product.price}</span>
                 </InfoProduct>
-                <ButtonAddCart>
+                <ButtonAddCart onClick={(e) => e.preventDefault()}>
                   <Handbag />
                 </ButtonAddCart>
               </Footer>
