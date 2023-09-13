@@ -8,7 +8,7 @@ export const Container = styled('div', {
   minHeight: '100vh',
 });
 
-export const Header = styled('header', {
+export const HeaderContainer = styled('header', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -19,6 +19,9 @@ export const Header = styled('header', {
 });
 
 export const Cart = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   padding: '0.75rem',
   borderRadius: '0.375rem',
   background: '$gray800',
@@ -51,5 +54,36 @@ export const Counter = styled('div', {
     color: '$white',
     fontSize: 14,
     fontWeight: 'bold',
+  },
+});
+
+export const Aside = styled('aside', {
+  position: 'absolute',
+  right: 0,
+  top: 0,
+  background: '$gray800',
+  maxWidth: 480,
+  height: '100%',
+  zIndex: 10,
+  transition: '0.5s',
+
+  variants: {
+    isOpen: {
+      true: {
+        opacity: 1,
+      },
+      false: {
+        opacity: 0,
+        zIndex: 0,
+      },
+    },
+  },
+
+  defaultVariants: {
+    isOpen: false, // Define o estado inicial como fechado
+  },
+
+  h2: {
+    color: '$white',
   },
 });

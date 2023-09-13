@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Stripe from 'stripe';
+import { useShoppingCart } from 'use-shopping-cart';
 
 interface ProductProps {
   product: {
@@ -20,6 +21,8 @@ interface ProductProps {
 }
 
 export default function Product({ product }: ProductProps) {
+  const { cartDetails } = useShoppingCart();
+
   const [disabledButton, setDisabledButton] = useState(false);
   const { isFallback } = useRouter();
   if (isFallback) {
@@ -40,6 +43,8 @@ export default function Product({ product }: ProductProps) {
       setDisabledButton(false);
     }
   }
+
+  console.log(cartDetails);
   return (
     <>
       <Head>

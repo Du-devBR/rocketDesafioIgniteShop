@@ -1,25 +1,26 @@
 import { globalStyles } from '@/styles/global';
 import type { AppProps } from 'next/app';
-import logoImg from '../assets/logo.svg';
-import { Cart, Container, Counter, Header } from '@/styles/pages/app';
-import Image from 'next/image';
-import { Handbag } from 'phosphor-react';
+import { Container } from '@/styles/pages/app';
+import { CartProvider } from 'use-shopping-cart';
+import Header from './header';
 
 globalStyles();
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Container>
-      <Header>
-        <Image src={logoImg} alt="" />
-        <Cart>
-          <Handbag size={24} fontWeight={'700'} color="white" />
-          <Counter>
-            <span>0</span>
-          </Counter>
-        </Cart>
-      </Header>
-      <Component {...pageProps} />
-    </Container>
+    <CartProvider
+      mode="payment"
+      stripe={process.env.STRIPE_PUBLIC_KEY as string}
+      successUrl="/success" // Adicione o URL de sucesso
+      cancelUrl="/" // Adicione o URL de cancelamento
+      currency="USD" // Adicione a moeda
+      shouldPersist // Adicione se deve persistir o carrinho
+      cartMode="client-only"
+    >
+      <Container>
+        <Header />
+        <Component {...pageProps} />
+      </Container>
+    </CartProvider>
   );
 }

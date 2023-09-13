@@ -10,6 +10,8 @@ import { GetStaticProps } from 'next';
 import Stripe from 'stripe';
 import Head from 'next/head';
 import { Handbag } from 'phosphor-react';
+import { useShoppingCart } from 'use-shopping-cart';
+import { useState } from 'react';
 
 interface IProduct {
   id: string;
@@ -23,12 +25,21 @@ interface HomeProps {
 }
 
 export default function Home({ products }: HomeProps) {
+  const { addItem, cartDetails, cartCount } = useShoppingCart();
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 1.5,
       spacing: 48,
     },
   });
+
+  function handleAddToCart(event: React.FormEvent, product: any) {
+    event.preventDefault();
+    addItem(product);
+  }
+
+  // console.log(Object.values(cartDetails ?? {}).map((teste) => teste.id));
+
   return (
     <>
       <Head>
@@ -44,7 +55,7 @@ export default function Home({ products }: HomeProps) {
                   <strong>{product.name}</strong>
                   <span>{product.price}</span>
                 </InfoProduct>
-                <ButtonAddCart onClick={(e) => e.preventDefault()}>
+                <ButtonAddCart onClick={(event) => handleAddToCart(event, product)}>
                   <Handbag />
                 </ButtonAddCart>
               </Footer>
