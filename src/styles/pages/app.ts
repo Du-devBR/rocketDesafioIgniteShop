@@ -16,6 +16,7 @@ export const HeaderContainer = styled('header', {
   width: '100%',
   maxWidth: 1180,
   margin: '0 auto',
+  zIndex: 1,
 });
 
 export const Cart = styled('div', {
@@ -58,19 +59,24 @@ export const Counter = styled('div', {
 });
 
 export const Aside = styled('aside', {
+  display: 'flex',
+  flexDirection: 'column',
   position: 'absolute',
   right: 0,
   top: 0,
   background: '$gray800',
+  width: '100%',
   maxWidth: 480,
   height: '100%',
-  zIndex: 10,
   transition: '0.5s',
+  zIndex: 0,
+  padding: '4.5rem 3rem',
 
   variants: {
     isOpen: {
       true: {
         opacity: 1,
+        zIndex: 10,
       },
       false: {
         opacity: 0,
@@ -80,10 +86,124 @@ export const Aside = styled('aside', {
   },
 
   defaultVariants: {
-    isOpen: false, // Define o estado inicial como fechado
+    isOpen: false,
   },
 
   h2: {
     color: '$white',
+    fontSize: '$lg',
+    fontWeight: 'bold',
+    marginBottom: '2rem',
+  },
+});
+
+export const Item = styled('div', {
+  display: 'flex',
+  gap: '1.25rem',
+  marginBottom: '1.5rem',
+});
+
+export const ImageContainer = styled('div', {
+  borderRadius: '0.5rem',
+  background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
+  width: '100%',
+  maxWidth: 102,
+
+  img: {
+    objectFit: 'cover',
+  },
+});
+
+export const ItemInfo = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+
+  strong: {
+    fontSize: '$md',
+    color: '$gray300',
+    fontWeight: 'normal',
+    lineHeight: '160%',
+  },
+
+  span: {
+    fontSize: '$md',
+    color: '$gray100',
+    fontWeight: 'bold',
+    lineHeight: '160%',
+  },
+
+  button: {
+    border: 'none',
+    background: 'none',
+    color: '$green500',
+    fontSize: '$sm',
+    fontWeight: 'bold',
+    lineHeight: '160%',
+    cursor: 'pointer',
+
+    marginTop: '0.5rem',
+    alignSelf: 'flex-start',
+  },
+});
+
+export const Footer = styled('footer', {
+  display: 'flex',
+  flexDirection: 'column',
+  margin: 'auto',
+  width: '100%',
+
+  button: {
+    display: 'flex',
+    justifyContent: 'center',
+    padding: '1.25rem 2rem',
+    borderRadius: '0.5rem',
+    border: 'none',
+    background: '$green500',
+
+    fontSize: '$md',
+    color: '$white',
+    fontWeight: 'bold',
+    lineHeight: '160%',
+
+    cursor: 'pointer',
+  },
+});
+
+export const Quantity = styled('div', {
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'flex-end',
+
+  span: {
+    color: '$gray100',
+    fontWeight: 'normal',
+    lineHeight: '160%',
+
+    '&:first-child': {
+      fontSize: '$sm',
+    },
+    '&:last-child': {
+      fontSize: '$md',
+    },
+  },
+});
+
+export const Price = styled('div', {
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'flex-end',
+  margin: '0.5rem 0 4rem 0',
+
+  span: {
+    color: '$gray100',
+    fontWeight: 'bold',
+    lineHeight: '160%',
+
+    '&:first-child': {
+      fontSize: '$md',
+    },
+    '&:last-child': {
+      fontSize: '$ls',
+    },
   },
 });
