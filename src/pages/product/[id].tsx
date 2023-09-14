@@ -21,7 +21,7 @@ interface ProductProps {
 }
 
 export default function Product({ product }: ProductProps) {
-  const { cartDetails } = useShoppingCart();
+  const { cartDetails, addItem } = useShoppingCart();
 
   const [disabledButton, setDisabledButton] = useState(false);
   const { isFallback } = useRouter();
@@ -44,7 +44,10 @@ export default function Product({ product }: ProductProps) {
     }
   }
 
-  console.log(cartDetails);
+  async function handleAddingProductToCart() {
+    addItem(product);
+  }
+
   return (
     <>
       <Head>
@@ -58,9 +61,10 @@ export default function Product({ product }: ProductProps) {
           <h1>{product.name}</h1>
           <span>{product.price}</span>
           <p>{product.descripition}</p>
-          <button disabled={disabledButton} onClick={handleBuyProduct}>
+          {/* <button disabled={disabledButton} onClick={handleBuyProduct}>
             Comprar agora
-          </button>
+          </button> */}
+          <button onClick={handleAddingProductToCart}>Adicionar ao carrinho</button>
         </ProductDetails>
       </ProductContainer>
     </>
