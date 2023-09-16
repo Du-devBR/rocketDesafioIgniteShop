@@ -17,7 +17,7 @@ interface IProduct {
   id: string;
   name: string;
   imageUrl: string;
-  price: string;
+  price: number;
 }
 
 interface HomeProps {
@@ -25,7 +25,7 @@ interface HomeProps {
 }
 
 export default function Home({ products }: HomeProps) {
-  const { addItem, cartDetails, cartCount } = useShoppingCart();
+  const { addItem } = useShoppingCart();
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 1.5,
@@ -40,6 +40,13 @@ export default function Home({ products }: HomeProps) {
 
   // console.log(Object.values(cartDetails ?? {}).map((teste) => teste.id));
 
+  function formatteMoney(moneyInCentes: number) {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    }).format(moneyInCentes);
+  }
+
   return (
     <>
       <Head>
@@ -53,7 +60,7 @@ export default function Home({ products }: HomeProps) {
               <Footer>
                 <InfoProduct>
                   <strong>{product.name}</strong>
-                  <span>{product.price}</span>
+                  <span>{formatteMoney(product.price / 100)}</span>
                 </InfoProduct>
                 <ButtonAddCart onClick={(event) => handleAddToCart(event, product)}>
                   <Handbag />
@@ -79,10 +86,11 @@ export const getStaticProps: GetStaticProps = async () => {
       id: product.id,
       name: product.name,
       imageUrl: product.images[0],
-      price: new Intl.NumberFormat('pr-BR', {
-        style: 'currency',
-        currency: 'BRL',
-      }).format((price.unit_amount || 0) / 100),
+      // price: new Intl.NumberFormat('pr-BR', {
+      //   style: 'currency',
+      //   currency: 'BRL',
+      // }).format((price.unit_amount || 0) / 100),
+      price: price.unit_amount,
       defaultPriceId: price.id,
     };
   });

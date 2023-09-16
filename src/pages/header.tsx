@@ -24,7 +24,7 @@ export type IProduct = Product & {
 };
 
 export default function Header() {
-  const { cartCount, cartDetails } = useShoppingCart();
+  const { cartCount, cartDetails, removeItem, formattedTotalPrice } = useShoppingCart();
   const [toggle, setToggle] = useState(false);
   const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false);
 
@@ -48,6 +48,12 @@ export default function Header() {
       setIsCreatingCheckoutSession(false);
       alert('Falha ao redirecionar ao checkout!');
     }
+  }
+  function formatteMoney(moneyInCentes: number) {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    }).format(moneyInCentes);
   }
 
   return (
@@ -74,19 +80,19 @@ export default function Header() {
             </ImageContainer>
             <ItemInfo>
               <strong>{product.name}</strong>
-              <span>{product.price}</span>
-              <button>Remover</button>
+              <span>{formatteMoney(product.price / 100)}</span>
+              <button onClick={() => removeItem(product.id)}>Remover</button>
             </ItemInfo>
           </Item>
         ))}
         <Footer>
           <Quantity>
             <span>Quantidade</span>
-            <span>3 itens</span>
+            <span>{cartCount !== undefined ? `${cartCount} ${cartCount > 1 ? 'itens' : 'item'}` : '0 itens'}</span>
           </Quantity>
           <Price>
             <span>Valor total</span>
-            <span>$R$ 270,00</span>
+            <span>{formattedTotalPrice}</span>
           </Price>
           <button onClick={handleCheckout}>Finalizar compra</button>
         </Footer>
