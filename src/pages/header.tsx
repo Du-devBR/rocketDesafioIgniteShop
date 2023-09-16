@@ -17,6 +17,7 @@ import { useShoppingCart } from 'use-shopping-cart';
 import { useState } from 'react';
 import { Product } from 'use-shopping-cart/core';
 import axios from 'axios';
+import { formatterPrice } from '@/util/formatterPrice';
 
 export type IProduct = Product & {
   defaultPriceId?: string;
@@ -49,13 +50,6 @@ export default function Header() {
       alert('Falha ao redirecionar ao checkout!');
     }
   }
-  function formatteMoney(moneyInCentes: number) {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    }).format(moneyInCentes);
-  }
-
   return (
     <>
       <HeaderContainer>
@@ -80,7 +74,7 @@ export default function Header() {
             </ImageContainer>
             <ItemInfo>
               <strong>{product.name}</strong>
-              <span>{formatteMoney(product.price / 100)}</span>
+              <span>{formatterPrice(product.price / 100)}</span>
               <button onClick={() => removeItem(product.id)}>Remover</button>
             </ItemInfo>
           </Item>
