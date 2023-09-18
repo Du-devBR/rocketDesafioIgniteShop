@@ -1,9 +1,10 @@
 import {
   Aside,
+  ButtonCheckout,
   ButtonClosed,
   Cart,
   Counter,
-  Footer,
+  FooterCheckout,
   FullCart,
   HeaderContainer,
   ImageContainer,
@@ -20,6 +21,7 @@ import { useState } from 'react';
 import { Product } from 'use-shopping-cart/core';
 import axios from 'axios';
 import { formatterPrice } from '@/util/formatterPrice';
+import Link from 'next/link';
 
 export type IProduct = Product & {
   defaultPriceId?: string;
@@ -29,6 +31,9 @@ export type IProduct = Product & {
 export default function Header() {
   const { cartCount, cartDetails, removeItem, formattedTotalPrice } = useShoppingCart();
   const [toggle, setToggle] = useState(false);
+  const [disabledButton, setDisabledButton] = useState(false);
+
+  console.log(formattedTotalPrice);
 
   // Para corrigir a tipagem do cartDetails chatGpt sugeriu corrgir gerando uma logica
   // para reclassificar o typeof.
@@ -36,6 +41,7 @@ export default function Header() {
     cartDetails && typeof cartDetails === 'object' ? Object.keys(cartDetails).map((item) => cartDetails[item]) : [];
   async function handleCheckout() {
     try {
+      setDisabledButton(true);
       const response = await axios.post('/api/checkout', {
         products: products,
       });
@@ -46,12 +52,15 @@ export default function Header() {
       }
     } catch (error) {
       alert('Falha ao redirecionar ao checkout!');
+      setDisabledButton(false);
     }
   }
   return (
     <>
       <HeaderContainer>
-        <Image src={logoImg} alt="" />
+        <Link href={'/'}>
+          <Image src={logoImg} alt="" />
+        </Link>
         <Cart onClick={() => setToggle(!toggle)}>
           <Handbag size={24} fontWeight={'700'} color="white" />
           {cartCount ? (
@@ -83,7 +92,7 @@ export default function Header() {
               </ItemInfo>
             </Item>
           ))}
-          <Footer>
+          <FooterCheckout>
             <Quantity>
               <span>Quantidade</span>
               <span>{cartCount !== undefined ? `${cartCount} ${cartCount > 1 ? 'itens' : 'item'}` : '0 itens'}</span>
@@ -92,8 +101,10 @@ export default function Header() {
               <span>Valor total</span>
               <span>{formattedTotalPrice}</span>
             </Price>
-            <button onClick={handleCheckout}>Finalizar compra</button>
-          </Footer>
+            <ButtonCheckout disabled={disabledButton} onClick={handleCheckout}>
+              Comprar agora
+            </ButtonCheckout>
+          </FooterCheckout>
         </Aside>
       ) : (
         ''

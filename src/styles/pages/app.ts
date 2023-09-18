@@ -187,7 +187,7 @@ export const ItemInfo = styled('div', {
   },
 });
 
-export const Footer = styled('footer', {
+export const FooterCheckout = styled('footer', {
   display: 'flex',
   flexDirection: 'column',
   margin: 'auto',
@@ -246,5 +246,28 @@ export const Price = styled('div', {
     '&:last-child': {
       fontSize: '$ls',
     },
+  },
+});
+
+export const ButtonCheckout = styled('button', {
+  marginTop: 'auto',
+  backgroundColor: '$green500',
+  border: 0,
+  color: '$white',
+  borderRadius: 8,
+  padding: '1.25rem',
+  cursor: 'pointer',
+  fontWeight: 'bold',
+  fontSize: '$md',
+  transition: '0.6s',
+
+  '&:disabled': {
+    opacity: 0.6,
+    cursor: 'not-allowed',
+  },
+
+  '&:not(:disabled)hover': {
+    backgroundColor: '$green300',
+    transition: '0.6s',
   },
 });

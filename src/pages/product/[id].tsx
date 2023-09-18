@@ -1,11 +1,11 @@
 import { stripe } from '@/lib/stripe';
 import { ImageContainer, ProductContainer, ProductDetails } from '@/styles/pages/products';
+import { formatterPrice } from '@/util/formatterPrice';
 import axios from 'axios';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 import Stripe from 'stripe';
 import { useShoppingCart } from 'use-shopping-cart';
 
@@ -14,37 +14,21 @@ interface ProductProps {
     id: string;
     name: string;
     imageUrl: string;
-    price: string;
+    price: number;
     descripition: string;
     defaultPriceId: string;
   };
 }
 
 export default function Product({ product }: ProductProps) {
-  const { cartDetails, addItem } = useShoppingCart();
-
-  const [disabledButton, setDisabledButton] = useState(false);
+  const { addItem } = useShoppingCart();
   const { isFallback } = useRouter();
   if (isFallback) {
     return <p>Loading....</p>;
   }
 
-  async function handleBuyProduct() {
-    try {
-      setDisabledButton(true);
-      const response = await axios.post('/api/checkout', {
-        priceId: product.defaultPriceId,
-      });
-
-      const { checkoutUrl } = response.data;
-      window.location.href = checkoutUrl;
-    } catch (error) {
-      alert('Erro ao redirecionar para a pagina de checkout!');
-      setDisabledButton(false);
-    }
-  }
-
-  async function handleAddingProductToCart() {
+  async function handleAddingProductToCart(event: React.FormEvent, product: any) {
+    event.preventDefault();
     addItem(product);
   }
 
@@ -59,12 +43,9 @@ export default function Product({ product }: ProductProps) {
         </ImageContainer>
         <ProductDetails>
           <h1>{product.name}</h1>
-          <span>{product.price}</span>
+          <span>{formatterPrice(product.price / 100)}</span>
           <p>{product.descripition}</p>
-          {/* <button disabled={disabledButton} onClick={handleBuyProduct}>
-            Comprar agora
-          </button> */}
-          <button onClick={handleAddingProductToCart}>Adicionar ao carrinho</button>
+          <button onClick={(event) => handleAddingProductToCart(event, product)}>Adicionar ao carrinho</button>
         </ProductDetails>
       </ProductContainer>
     </>
@@ -92,10 +73,7 @@ export const getStaticProps: GetStaticProps = async ({ params }: any) => {
         id: product.id,
         name: product.name,
         imageUrl: product.images[0],
-        price: new Intl.NumberFormat('pr-BR', {
-          style: 'currency',
-          currency: 'BRL',
-        }).format((price.unit_amount || 0) / 100),
+        price: price.unit_amount,
         descripition: product.description,
         defaultPriceId: price.id,
       },
