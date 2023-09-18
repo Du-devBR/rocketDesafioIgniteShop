@@ -33,6 +33,30 @@ export const Cart = styled('div', {
   '&:hover': {
     background: '$gray300',
     transition: '0.5s',
+
+    div: {
+      opacity: 1,
+      transform: 'translateY(0%)',
+    },
+  },
+});
+
+export const FullCart = styled('div', {
+  position: 'absolute',
+  right: 0,
+  bottom: '-3.75rem',
+  background: '$green300',
+  width: '214px',
+  padding: '1rem 2rem',
+  borderRadius: '0.5rem',
+
+  transform: 'translateY(110%)',
+  opacity: 0,
+  transition: 'all 0.5s ease-in-out',
+
+  p: {
+    color: '$white',
+    fontSize: '$lg',
   },
 });
 

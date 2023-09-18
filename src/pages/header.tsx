@@ -4,6 +4,7 @@ import {
   Cart,
   Counter,
   Footer,
+  FullCart,
   HeaderContainer,
   ImageContainer,
   Item,
@@ -62,39 +63,45 @@ export default function Header() {
               <span>{cartCount}</span>
             </Counter>
           ) : (
-            ''
+            <FullCart>
+              <p>Seu carrinho esta vazio!</p>
+            </FullCart>
           )}
         </Cart>
       </HeaderContainer>
-      <Aside isOpen={toggle}>
-        <ButtonClosed onClick={() => setToggle(!toggle)}>
-          <X weight="bold" />
-        </ButtonClosed>
-        <h2>Sacola de compras</h2>
-        {Object.values(cartDetails ?? {}).map((product) => (
-          <Item key={product.id}>
-            <ImageContainer>
-              <Image src={product?.imageUrl} alt="" width={101} height={94} />
-            </ImageContainer>
-            <ItemInfo>
-              <strong>{product.name}</strong>
-              <span>{formatterPrice(product.price / 100)}</span>
-              <button onClick={() => removeItem(product.id)}>Remover</button>
-            </ItemInfo>
-          </Item>
-        ))}
-        <Footer>
-          <Quantity>
-            <span>Quantidade</span>
-            <span>{cartCount !== undefined ? `${cartCount} ${cartCount > 1 ? 'itens' : 'item'}` : '0 itens'}</span>
-          </Quantity>
-          <Price>
-            <span>Valor total</span>
-            <span>{formattedTotalPrice}</span>
-          </Price>
-          <button onClick={handleCheckout}>Finalizar compra</button>
-        </Footer>
-      </Aside>
+      {cartCount ? (
+        <Aside isOpen={toggle}>
+          <ButtonClosed onClick={() => setToggle(!toggle)}>
+            <X weight="bold" />
+          </ButtonClosed>
+          <h2>Sacola de compras</h2>
+          {Object.values(cartDetails ?? {}).map((product) => (
+            <Item key={product.id}>
+              <ImageContainer>
+                <Image src={product?.imageUrl} alt="" width={101} height={94} />
+              </ImageContainer>
+              <ItemInfo>
+                <strong>{product.name}</strong>
+                <span>{formatterPrice(product.price / 100)}</span>
+                <button onClick={() => removeItem(product.id)}>Remover</button>
+              </ItemInfo>
+            </Item>
+          ))}
+          <Footer>
+            <Quantity>
+              <span>Quantidade</span>
+              <span>{cartCount !== undefined ? `${cartCount} ${cartCount > 1 ? 'itens' : 'item'}` : '0 itens'}</span>
+            </Quantity>
+            <Price>
+              <span>Valor total</span>
+              <span>{formattedTotalPrice}</span>
+            </Price>
+            <button onClick={handleCheckout}>Finalizar compra</button>
+          </Footer>
+        </Aside>
+      ) : (
+        ''
+      )}
     </>
   );
 }
