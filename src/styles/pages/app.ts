@@ -97,6 +97,23 @@ export const Aside = styled('aside', {
   },
 });
 
+export const ButtonClosed = styled('button', {
+  position: 'absolute',
+  border: 'none',
+  background: 'none',
+  top: 24,
+  right: 24,
+  color: '$gray500',
+  fontSize: '$xl',
+  transition: '0.5s',
+  cursor: 'pointer',
+
+  '&:hover': {
+    color: '$gray300',
+    transition: '0.5s',
+  },
+});
+
 export const Item = styled('div', {
   display: 'flex',
   gap: '1.25rem',

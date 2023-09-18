@@ -1,5 +1,6 @@
 import {
   Aside,
+  ButtonClosed,
   Cart,
   Counter,
   Footer,
@@ -11,7 +12,7 @@ import {
   Quantity,
 } from '@/styles/pages/app';
 import Image from 'next/image';
-import { Handbag } from 'phosphor-react';
+import { Handbag, X } from 'phosphor-react';
 import logoImg from '../assets/logo.svg';
 import { useShoppingCart } from 'use-shopping-cart';
 import { useState } from 'react';
@@ -66,6 +67,9 @@ export default function Header() {
         </Cart>
       </HeaderContainer>
       <Aside isOpen={toggle}>
+        <ButtonClosed onClick={() => setToggle(!toggle)}>
+          <X weight="bold" />
+        </ButtonClosed>
         <h2>Sacola de compras</h2>
         {Object.values(cartDetails ?? {}).map((product) => (
           <Item key={product.id}>
