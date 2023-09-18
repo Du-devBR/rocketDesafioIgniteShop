@@ -7,6 +7,7 @@ export const SuccessContainer = styled('main', {
   justifyContent: 'center',
   margin: '0 auto',
   height: 656,
+  position: 'relative',
 
   h1: {
     fontSize: '$2xl',
@@ -21,6 +22,11 @@ export const SuccessContainer = styled('main', {
     marginTop: '2rem',
     lineHeight: 1.4,
   },
+});
+
+export const ImageLogo = styled('image', {
+  position: 'absolute',
+  top: 0,
 });
 
 export const Images = styled('div', {

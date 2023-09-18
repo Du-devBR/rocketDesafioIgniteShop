@@ -29,7 +29,6 @@ export type IProduct = Product & {
 export default function Header() {
   const { cartCount, cartDetails, removeItem, formattedTotalPrice } = useShoppingCart();
   const [toggle, setToggle] = useState(false);
-  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false);
 
   // Para corrigir a tipagem do cartDetails chatGpt sugeriu corrgir gerando uma logica
   // para reclassificar o typeof.
@@ -37,8 +36,6 @@ export default function Header() {
     cartDetails && typeof cartDetails === 'object' ? Object.keys(cartDetails).map((item) => cartDetails[item]) : [];
   async function handleCheckout() {
     try {
-      setIsCreatingCheckoutSession(true);
-
       const response = await axios.post('/api/checkout', {
         products: products,
       });
@@ -48,7 +45,6 @@ export default function Header() {
         window.location.href = checkoutUrl;
       }
     } catch (error) {
-      setIsCreatingCheckoutSession(false);
       alert('Falha ao redirecionar ao checkout!');
     }
   }

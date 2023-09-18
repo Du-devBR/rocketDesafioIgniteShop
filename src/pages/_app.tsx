@@ -6,19 +6,20 @@ import Header from './header';
 
 globalStyles();
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps, router }: AppProps) {
+  const isSuccessPage = router.pathname === '/success';
   return (
     <CartProvider
       mode="payment"
       stripe={process.env.STRIPE_PUBLIC_KEY as string}
-      successUrl="/success" // Adicione o URL de sucesso
-      cancelUrl="/" // Adicione o URL de cancelamento
-      currency="USD" // Adicione a moeda
-      shouldPersist // Adicione se deve persistir o carrinho
+      successUrl="/success"
+      cancelUrl="/"
+      currency="USD"
+      shouldPersist
       cartMode="client-only"
     >
       <Container>
-        <Header />
+        {!isSuccessPage && <Header />}
         <Component {...pageProps} />
       </Container>
     </CartProvider>

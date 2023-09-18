@@ -1,10 +1,10 @@
 import { stripe } from '@/lib/stripe';
-import { ImageContainer, Images, LinkText, SuccessContainer } from '@/styles/pages/success';
+import { ImageContainer, ImageLogo, Images, LinkText, SuccessContainer } from '@/styles/pages/success';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import Stripe from 'stripe';
+import logoImg from '../assets/logo.svg';
 
 interface SuccessProps {
   customerName: string;
@@ -16,7 +16,9 @@ interface SuccessProps {
 }
 
 export default function Success({ customerName, product }: SuccessProps) {
-  console.log(product);
+  function handleRemoveItensLocalStorage() {
+    localStorage.removeItem('persist:root');
+  }
 
   return (
     <>
@@ -25,6 +27,9 @@ export default function Success({ customerName, product }: SuccessProps) {
         <meta name="robots" content="noindex" />
       </Head>
       <SuccessContainer>
+        <ImageLogo>
+          <Image src={logoImg} alt="" />
+        </ImageLogo>
         <h1>Compra efetuada!</h1>
         <Images>
           {product.map((image) => (
@@ -39,7 +44,7 @@ export default function Success({ customerName, product }: SuccessProps) {
           {`${product.length > 1 ? 'camisetas' : 'camiseta'} `}
           já está a caminho da sua casa.
         </p>
-        <Link href={'/'}>
+        <Link href={'/'} onClick={handleRemoveItensLocalStorage}>
           <LinkText>Voltar ao catalogo</LinkText>
         </Link>
       </SuccessContainer>
