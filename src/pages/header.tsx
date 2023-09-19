@@ -42,18 +42,18 @@ export default function Header() {
   const products: IProduct[] =
     cartDetails && typeof cartDetails === 'object' ? Object.keys(cartDetails).map((item) => cartDetails[item]) : [];
   async function handleCheckout() {
+    toast.warning('Redirecionando para pagamento');
     try {
       setDisabledButton(true);
       const response = await axios.post('/api/checkout', {
         products: products,
       });
-
       const { checkoutUrl } = response.data;
       if (typeof window !== undefined) {
         window.location.href = checkoutUrl;
       }
     } catch (error) {
-      alert('Falha ao redirecionar ao checkout!');
+      toast.error('Falha ao redirecionar para pagamento!');
       setDisabledButton(false);
     }
   }

@@ -93,10 +93,10 @@ export const Aside = styled('aside', {
   background: '$gray800',
   width: '100%',
   maxWidth: 480,
-  height: '100%',
+  minHeight: '100vh',
   transition: '0.5s',
   zIndex: 0,
-  padding: '4.5rem 3rem',
+  padding: '0 3rem',
 
   variants: {
     isOpen: {
@@ -119,7 +119,7 @@ export const Aside = styled('aside', {
     color: '$white',
     fontSize: '$lg',
     fontWeight: 'bold',
-    marginBottom: '2rem',
+    margin: '4.5rem 0',
   },
 });
 
@@ -194,22 +194,6 @@ export const FooterCheckout = styled('footer', {
   flexDirection: 'column',
   margin: 'auto',
   width: '100%',
-
-  button: {
-    display: 'flex',
-    justifyContent: 'center',
-    padding: '1.25rem 2rem',
-    borderRadius: '0.5rem',
-    border: 'none',
-    background: '$green500',
-
-    fontSize: '$md',
-    color: '$white',
-    fontWeight: 'bold',
-    lineHeight: '160%',
-
-    cursor: 'pointer',
-  },
 });
 
 export const Quantity = styled('div', {
@@ -252,7 +236,6 @@ export const Price = styled('div', {
 });
 
 export const ButtonCheckout = styled('button', {
-  marginTop: 'auto',
   backgroundColor: '$green500',
   border: 0,
   color: '$white',
@@ -262,6 +245,7 @@ export const ButtonCheckout = styled('button', {
   fontWeight: 'bold',
   fontSize: '$md',
   transition: '0.6s',
+  marginBottom: '4.5rem',
 
   '&:disabled': {
     opacity: 0.6,
