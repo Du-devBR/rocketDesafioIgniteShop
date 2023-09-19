@@ -13,6 +13,7 @@ import {
   Price,
   Quantity,
 } from '@/styles/pages/app';
+import 'react-toastify/dist/ReactToastify.css';
 import Image from 'next/image';
 import { Handbag, X } from 'phosphor-react';
 import logoImg from '../assets/logo.svg';
@@ -22,6 +23,7 @@ import { Product } from 'use-shopping-cart/core';
 import axios from 'axios';
 import { formatterPrice } from '@/util/formatterPrice';
 import Link from 'next/link';
+import { ToastContainer, toast } from 'react-toastify';
 
 export type IProduct = Product & {
   defaultPriceId?: string;
@@ -54,6 +56,11 @@ export default function Header() {
       alert('Falha ao redirecionar ao checkout!');
       setDisabledButton(false);
     }
+  }
+
+  function handleRemoveItem(id: string, name: string) {
+    removeItem(id);
+    toast.success(`Removido ${name} do carrinho.`);
   }
   return (
     <>
@@ -88,7 +95,7 @@ export default function Header() {
               <ItemInfo>
                 <strong>{product.name}</strong>
                 <span>{formatterPrice(product.price / 100)}</span>
-                <button onClick={() => removeItem(product.id)}>Remover</button>
+                <button onClick={() => handleRemoveItem(product.id, product.name)}>Remover</button>
               </ItemInfo>
             </Item>
           ))}

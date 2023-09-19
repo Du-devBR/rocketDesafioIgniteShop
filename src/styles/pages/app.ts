@@ -37,6 +37,7 @@ export const Cart = styled('div', {
     div: {
       opacity: 1,
       transform: 'translateY(0%)',
+      visibility: 'visible',
     },
   },
 });
@@ -52,6 +53,7 @@ export const FullCart = styled('div', {
 
   transform: 'translateY(110%)',
   opacity: 0,
+  visibility: 'hidden',
   transition: 'all 0.5s ease-in-out',
 
   p: {
