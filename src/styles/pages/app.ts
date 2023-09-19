@@ -93,7 +93,7 @@ export const Aside = styled('aside', {
   background: '$gray800',
   width: '100%',
   maxWidth: 480,
-  minHeight: '100vh',
+  minHeight: '100%',
   transition: '0.5s',
   zIndex: 0,
   padding: '0 3rem',

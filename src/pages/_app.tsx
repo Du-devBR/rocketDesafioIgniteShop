@@ -14,7 +14,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
       stripe={process.env.STRIPE_PUBLIC_KEY as string}
       successUrl="/success"
       cancelUrl="/"
-      currency="USD"
+      currency="BRL"
       shouldPersist
       cartMode="client-only"
     >

@@ -23,7 +23,7 @@ import { Product } from 'use-shopping-cart/core';
 import axios from 'axios';
 import { formatterPrice } from '@/util/formatterPrice';
 import Link from 'next/link';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 export type IProduct = Product & {
   defaultPriceId?: string;
@@ -31,11 +31,9 @@ export type IProduct = Product & {
 };
 
 export default function Header() {
-  const { cartCount, cartDetails, removeItem, formattedTotalPrice } = useShoppingCart();
+  const { cartCount, cartDetails, removeItem, totalPrice, formattedTotalPrice } = useShoppingCart();
   const [toggle, setToggle] = useState(false);
   const [disabledButton, setDisabledButton] = useState(false);
-
-  console.log(formattedTotalPrice);
 
   // Para corrigir a tipagem do cartDetails chatGpt sugeriu corrgir gerando uma logica
   // para reclassificar o typeof.
@@ -106,7 +104,7 @@ export default function Header() {
             </Quantity>
             <Price>
               <span>Valor total</span>
-              <span>{formattedTotalPrice}</span>
+              <span>{formatterPrice((totalPrice as number) / 100)}</span>
             </Price>
             <ButtonCheckout disabled={disabledButton} onClick={handleCheckout}>
               Comprar agora
