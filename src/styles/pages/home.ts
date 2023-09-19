@@ -6,6 +6,10 @@ export const HomeContainer = styled('main', {
   maxWidth: 'calc(100vw - ((100vw - 1180px) / 2))',
   marginLeft: 'auto',
   minHeight: 656,
+
+  '@bp2': {
+    minHeight: 'auto',
+  },
 });
 
 export const Product = styled('div', {
@@ -20,6 +24,11 @@ export const Product = styled('div', {
 
   img: {
     objectFit: 'cover',
+
+    '@bp1': {
+      width: 300,
+      height: 'auto',
+    },
   },
 
   '&:hover': {
@@ -39,6 +48,7 @@ export const Footer = styled('footer', {
 
   borderRadius: 6,
   display: 'flex',
+  gap: '1rem',
   alignItems: 'center',
   justifyContent: 'space-between',
 
@@ -51,12 +61,20 @@ export const Footer = styled('footer', {
   strong: {
     fontSize: '$lg',
     color: '$gray100',
+
+    '@bp1': {
+      fontSize: '$mobileSm',
+    },
   },
 
   span: {
     fontSize: '$xl',
     fontWeight: 'bold',
     color: '$green300',
+
+    '@bp1': {
+      fontSize: '$mobileMd',
+    },
   },
 });
 
@@ -83,5 +101,15 @@ export const ButtonAddCart = styled('button', {
   '&:hover': {
     background: '$green300',
     transition: '0.5s',
+  },
+
+  '@bp2': {
+    fontSize: '$xl',
+    padding: '1rem',
+  },
+
+  '@bp1': {
+    fontSize: '$lg',
+    padding: '0.5rem',
   },
 });

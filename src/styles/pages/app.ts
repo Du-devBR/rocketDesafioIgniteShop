@@ -6,6 +6,11 @@ export const Container = styled('div', {
   alignItems: 'flex-start',
   justifyContent: 'center',
   minHeight: '100vh',
+  boxSizing: 'border-box',
+
+  '@bp3': {
+    paddingLeft: '2rem',
+  },
 });
 
 export const HeaderContainer = styled('header', {
@@ -17,6 +22,11 @@ export const HeaderContainer = styled('header', {
   maxWidth: 1180,
   margin: '0 auto',
   zIndex: 1,
+  boxSizing: 'border-box',
+
+  '@bp3': {
+    paddingRight: '2rem',
+  },
 });
 
 export const Cart = styled('div', {
@@ -91,8 +101,7 @@ export const Aside = styled('aside', {
   right: 0,
   top: 0,
   background: '$gray800',
-  width: '100%',
-  maxWidth: 480,
+  width: '40%',
   minHeight: '100%',
   transition: '0.5s',
   zIndex: 0,
@@ -103,10 +112,12 @@ export const Aside = styled('aside', {
       true: {
         opacity: 1,
         zIndex: 10,
+        visibility: 'visible',
       },
       false: {
         opacity: 0,
         zIndex: 0,
+        visibility: 'hidden',
       },
     },
   },
@@ -120,6 +131,14 @@ export const Aside = styled('aside', {
     fontSize: '$lg',
     fontWeight: 'bold',
     margin: '4.5rem 0',
+  },
+
+  '@bp2': {
+    width: '50%',
+  },
+
+  '@bp1': {
+    width: '80%',
   },
 });
 

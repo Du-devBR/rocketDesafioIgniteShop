@@ -29,7 +29,7 @@ export default function Home({ products }: HomeProps) {
   const { addItem } = useShoppingCart();
   const [sliderRef] = useKeenSlider({
     slides: {
-      perView: 1.5,
+      perView: 1.4,
       spacing: 48,
     },
   });
