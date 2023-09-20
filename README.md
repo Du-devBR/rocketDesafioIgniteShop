@@ -6,14 +6,26 @@
 
 > Projeto academico de um ecommerce com integração ao Stripe para realizar pagamentos, o projeto faz parte do desafio da trilha de React com Nextjs do Ignite [Rocketseat](http://app.ropcketseat.com.br)
 
+## Versão Web responsiva
+
 <div
   style="width:100%; display:flex; gap:16px, flex-wrap: wrap"
 >
-<img src="./src/assets//screen//home-screen.png" width="30%" height="150px">
-<img src="./src/assets//screen//cart-screen.png" width="30%" height="150px">
+<img src="./src/assets//screen//igniteShop2.gif" width="100%" height="100%">
+<!-- <img src="./src/assets//screen//cart-screen.png" width="30%" height="150px">
 <img src="./src/assets//screen//product-screen.png" width="30%" height="150px">
 <img src="./src/assets//screen//payment-screen.png" width="30%" height="150px">
-<img src="./src/assets//screen//success-screen.png" width="30%" height="150px">
+<img src="./src/assets//screen//success-screen.png" width="30%" height="150px"> -->
+
+</div>
+
+<div
+  style="width:100%; display:flex; gap:16px, flex-wrap: wrap"
+>
+<img src="./src/assets//screen//mobile1.png" width="30%">
+<img src="./src/assets//screen//mobile2.png" width="30%">
+<img src="./src/assets//screen//mobile3.png" width="30%">
+<img src="./src/assets//screen//mobile4.png" width="30%">
 
 </div>
 
