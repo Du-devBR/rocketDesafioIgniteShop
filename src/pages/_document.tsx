@@ -1,8 +1,8 @@
-import { getCssText } from "@/styles";
-import { Head, Html, Main, NextScript } from "next/document";
+import { getCssText } from '@/styles';
+import { Head, Html, Main, NextScript } from 'next/document';
 
-export default function Document(){
-  return(
+export default function Document() {
+  return (
     <Html>
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,5 +16,5 @@ export default function Document(){
         <NextScript />
       </body>
     </Html>
-  )
+  );
 }
