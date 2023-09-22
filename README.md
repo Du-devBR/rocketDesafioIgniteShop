@@ -4,7 +4,7 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/Du-devBR/rocketDesafioIgniteShop)
 ![GitHub forks](https://img.shields.io/github/forks/Du-devBR/rocketDesafioIgniteShop)
 
-> Projeto academico de um ecommerce com integração ao Stripe para realizar pagamentos, o projeto faz parte do desafio da trilha de React com Nextjs do Ignite [Rocketseat](http://app.ropcketseat.com.br)
+> Projeto academico de um ecommerce com integração ao Stripe para realizar pagamentos, o projeto faz parte do desafio da trilha de React com Nextjs do Ignite [Rocketseat](http://app.ropcketseat.com.br). Diversos conhecimento foram adquiridos nesse projeto, conceito de roteamento com NextJs, SSG e SSR do next. Além de poder interagir com um gateway de pagamento.
 
 ## Versão Web responsiva
 
@@ -12,12 +12,10 @@
   style="width:100%; display:flex; gap:16px, flex-wrap: wrap"
 >
 <img src="./src/assets//screen//igniteShop2.gif" width="100%" height="100%">
-<!-- <img src="./src/assets//screen//cart-screen.png" width="30%" height="150px">
-<img src="./src/assets//screen//product-screen.png" width="30%" height="150px">
-<img src="./src/assets//screen//payment-screen.png" width="30%" height="150px">
-<img src="./src/assets//screen//success-screen.png" width="30%" height="150px"> -->
 
 </div>
+
+## 100% Responsive
 
 <div
   style="width:100%; display:flex; gap:16px, flex-wrap: wrap"
