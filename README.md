@@ -1,4 +1,4 @@
-# Ignite Shop
+# Ignite Shop |
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/Du-devBR/rocketDesafioIgniteShop)
 ![GitHub language count](https://img.shields.io/github/languages/count/Du-devBR/rocketDesafioIgniteShop)
